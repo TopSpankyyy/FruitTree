@@ -1,2 +1,2 @@
-# FruitTree
-Simple API call to make and display tree family
+# PopGuesser
+Simple API call to make population guessing game
