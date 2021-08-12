@@ -39,16 +39,16 @@ function getCountry(elementToUpdate) {
 function checkHigher(elementToCheck, unguessed) {
     if (populationLeft > populationRight && elementToCheck.id == "countryInfoLeft") {
         console.log("Correct");
-        getCountry(unguessed);
+        //getCountry(unguessed);
     } else if (populationLeft <= populationRight && elementToCheck.id == "countryInfoLeft") {
         console.log("WRONG");
-        handleGame(false);
+        //handleGame(false);
     }
 }
 
 function handleGame(isStarted) {
     var leftSide = document.getElementById("countryInfoLeft");
-    var rightSide = document.getElementById("countryInfoLeft");
+    var rightSide = document.getElementById("countryInfoRight");
 
     if (!isStarted) {
         getCountry(leftSide);
