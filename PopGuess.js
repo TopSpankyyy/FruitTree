@@ -1,26 +1,35 @@
 window.onload = init;
 const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
-function getCountry() {
-
+function getCountry(elementToUpdate) {
     var randomCharacter1 = alphabet[Math.floor(Math.random() * alphabet.length)]
     var randomCharacter2 = alphabet[Math.floor(Math.random() * alphabet.length)]
     var countryCode = randomCharacter1 + randomCharacter2;
 
-    fetch('https://restcountries.eu/rest/v2/alpha/' + countryCode)
+    var countryName = fetch('https://restcountries.eu/rest/v2/alpha/' + countryCode)
         .then(response => {
             if (response.status == 404 ) {
-                getCountry();
+                getCountry(elementToUpdate);
                 return;
             } else {
                 return response.json();
             }
         })
-        .then( country => { document.getElementById("countryInfo").innerHTML = country.name;
+        .then( country => {
+            return elementToUpdate.innerHtml = country.name;
         });
+}
 
+function handleGame() {
+    var leftSide = document.getElementById("countryInfo1");
+    var rightSide = document.getElementById("countryInfo2");
+
+    document.getElementById("countryButton").addEventListener("click", function() { getCountry(leftSide); });
+    //getCountry(leftSide);
+    //getCountry(rightSide);
 }
 
 function init() {
-    document.getElementById("countryButton").addEventListener("click", getCountry);
+
+    handleGame();
 }
